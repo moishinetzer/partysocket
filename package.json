@@ -46,11 +46,12 @@
     "format": [
       "esm",
       "cjs"
-    ]
+    ],
+    "dts": true
   },
   "scripts": {
     "clean": "bunx shx rm -rf dist *.d.ts *.d.mts event-target-polyfill.*",
-    "post-build": "bunx shx mv dist/event-target-polyfill.* .",
+    "post-build": "bunx shx mv dist/*.d.ts dist/*.d.mts* . && bunx shx mv dist/event-target-polyfill.* .",
     "build": "npm run clean && bunx tsup --external react && npm run post-build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -81,6 +82,8 @@
     "event-target-shim": "^6.0.2"
   },
   "devDependencies": {
+    "@types/node": "^20.12.12",
+    "@types/react": "^18.3.2",
     "react": "^18.3.1",
     "tsup": "^8.0.2",
     "typescript": "^5.4.5"
